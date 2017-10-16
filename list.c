@@ -12,8 +12,8 @@ void print_list(struct node * n){
 	}
 }
 
-struct node * insert_front(struct node * n, int i){
-	struct node *head = (struct node *)malloc(sizeof(struct node));
+song_node * insert_front(song_node * n, int i){
+	song_node *head = (song_node *)malloc(sizeof(song_node));
 	head->next = n;
 	head->i = i;
 	return head;
@@ -25,6 +25,7 @@ struct node * free_list(struct node * n){
 		n = n->next;
 		free(hold);
 	}
+	return n;
 }
 
 int main(){

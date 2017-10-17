@@ -3,11 +3,6 @@ typedef struct song_node{
   char artist[256];
   struct song_node *next;
 } song_node;
-song_node *table[26];
-struct node{
-	int i;
-	node * next;
-};
-void print_list(struct node *);
-struct node * insert_front(struct node *, int);
-struct node * free_list(struct node *);
+void print_list(song_node *);
+song_node * insert_front(song_node *, char*, char*);
+song_node * free_list(song_node *);

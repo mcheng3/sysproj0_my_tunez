@@ -51,6 +51,22 @@ song_node * insert_ordered(song_node * n, char * name, char * artist){
 	//print_list(n);
 	return n;
 }
+
+song_node * find_song(song_node * n, char * name, char * artist) {
+	while (strcmp(name, n->name) || strcmp(artist, n->artist)) {
+		n = n -> next;
+		if (!strcmp(name, n-> name) && !strcmp(artist, n->artist)) return n;
+	}
+	return n; 
+}
+
+song_node * find_song_artist(song_node * n, char * artist) {
+	while (strcmp(artist, n-> artist)) {
+		n = n -> next;
+	}
+	return n;
+}
+
 song_node * free_list(song_node * n){
 	while(n){
 		song_node *hold = n;
@@ -66,9 +82,11 @@ int main(){
 	head = insert_front(next, "m", "b");
 	head = insert_front(head, "b", "b");
 	head = insert_front(head, "a", "d");
-	head = insert_ordered(head, "c", "b");	
+	//head = insert_ordered(head, "c", "b");	
+	print_list(find_song(head, "m", "b"));
 	br();
+	print_list(find_song_artist(head, "b"));
 	//printf("%d\n", head->next->i);
-	print_list(head);
+	//print_list(head);
 	free_list(head);
 }

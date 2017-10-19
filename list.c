@@ -27,29 +27,9 @@ song_node * insert_front(song_node * n, char * name, char * artist){
 	return head;
 }
 
-/* song_node * insert_ordered(song_node * n, char * name, char * artist){
-	song_node * temp = n;
-	song_node * tmp2 = n -> next;
-	song_node * head = n; 	
-	while(temp && (strcmp(temp->name, name) < 0)){
-		temp = temp->next;	
-	}
-	head = insert_front(temp, name, artist);
-//	print_list(n);
-	br();
-	while (strcmp(n->name, name) < 0 && n) {
-		printf("%d\n", strcmp(n->name, name));		
-		n = n-> next;
-	}   
-	print_list(n);
-	br();
-	print_list(head);
-	n -> next = head;
-	head->next = tmp2;
-	br();
-	//print_list(n);
-	return n;
-} */
+song_node * insert_ordered(song_node * n, char * name, char * artist) { 
+	
+}
 
 song_node * find_song(song_node * n, char * name, char * artist) {
 	while (n && (strcmp(name, n->name) || strcmp(artist, n->artist))) {
@@ -91,6 +71,15 @@ song_node * free_list(song_node * n){
 	return n;
 }
 
+int remove_node(song_node * n, char * name, char * artist) {
+	song_node * node = find_song(n, name, artist);
+	while (n->next != node) {
+		n = n -> next;
+	}
+	n -> next = node -> next;
+	return 0;
+}
+
 int main(){
 	song_node *head;
 	song_node *next = 0;
@@ -106,6 +95,10 @@ int main(){
 	br();
 	printf("FINDING RANDOM NODE\n");
 	print_list(rand_node(head));
+	br();
+	printf("REMOVING NODE\n");
+	remove_node(head, "b", "b");
+	print_list(head);
 	//printf("%d\n", head->next->i);
 	//print_list(head);
 	free_list(head);

@@ -28,7 +28,16 @@ song_node * insert_front(song_node * n, char * name, char * artist){
 }
 
 song_node * insert_ordered(song_node * n, char * name, char * artist) { 
-	
+	song_node * insert = (song_node *) malloc(sizeof(song_node));
+	strcpy(insert -> name, name);
+	strcpy(insert -> artist, artist);
+
+	while (strcmp(n->next-> name, name) < 0) {
+		n = n -> next;
+	}
+	insert -> next = n -> next;
+	n -> next = insert;
+	return insert;
 }
 
 song_node * find_song(song_node * n, char * name, char * artist) {
@@ -98,6 +107,9 @@ int main(){
 	br();
 	printf("REMOVING NODE\n");
 	remove_node(head, "b", "b");
+	print_list(head); 
+	printf("INSERTING NODE IN ORDER\n");
+	insert_ordered(head, "c", "d");
 	print_list(head);
 	//printf("%d\n", head->next->i);
 	//print_list(head);

@@ -10,3 +10,4 @@ song_node * insert_ordered(song_node *, char*, char*);
 song_node * find_song(song_node *, char*, char*);
 song_node * find_song_artist(song_node *, char*);
 song_node * rand_node(song_node *);
+int remove_node(song_node *, char *, char *);

@@ -96,7 +96,7 @@ int main(){
 	head = insert_front(head, "b", "b");
 	head = insert_front(head, "a", "d");
 	//head = insert_ordered(head, "c", "b");
-	printf("TESTING PRINT_LIST");
+	printf("TESTING PRINT_LIST\n");
 	print_list(head);
 	br();
 	printf("FINDING SONG BY NAME AND ARTIST\n");	

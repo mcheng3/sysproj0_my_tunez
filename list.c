@@ -89,7 +89,27 @@ int remove_node(song_node * n, char * name, char * artist) {
 	return 0;
 }
 
+void add_song(song_node * ary[], char * name, char * artist){
+	char letter = name[0];
+	printf("%c aka %d\n", letter, letter);
+	if(!ary[letter-97]){
+		printf("ok\n");
+		ary[letter-97] = (song_node *) malloc(sizeof(song_node));
+		ary[letter-97] = insert_front(0, name, artist);
+		
+	}
+	else{
+		insert_front(ary[letter-97], name, artist);
+	}
+	print_list(ary[letter-97]);
+	br();
+} 
 int main(){
+	song_node * table[27];
+	int i = 0;
+	for(;i<27;i++){
+		table[i] = 0;
+	}
 	song_node *head;
 	song_node *next = 0;
 	head = insert_front(next, "m", "b");
@@ -114,7 +134,9 @@ int main(){
 	printf("INSERTING NODE IN ORDER\n");
 	insert_ordered(head, "c", "d");
 	print_list(head);
+	add_song(table, "abc", "potato");
+	add_song(table, "abc", "potato");
 	//printf("%d\n", head->next->i);
-	//print_list(head);
+	print_list(table[0]);
 	free_list(head);
 }

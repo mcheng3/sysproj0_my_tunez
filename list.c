@@ -151,6 +151,22 @@ void print_table(song_node * ary[]) {
 		}
 	}
 }
+
+song_node * delete_song(song_node * ary[], char * name, char * artist) {
+	char letter = artist[0];
+	song_node * search = ary[letter-97];
+	return remove_node(ary[letter-97], name, artist);
+}
+
+void delete_all_songs(song_node * ary[]) {
+	int i = 0;
+	for (; i < 27; i++) {
+		while (ary[i]) {
+			ary[i] = remove_node(ary[i], ary[i] -> name, ary[i] -> artist);
+		}
+	}
+}
+
 int main(){
 	song_node * table[27];
 	int i = 0;
@@ -240,4 +256,21 @@ int main(){
 	printf("PRINT t list\n");
 	print_letter_list(table, 't');
 	free_list(head);
+
+	br();
+	
+	printf("TESTING DELETE SONG\n");
+	printf("Deleting look what you made me do by taylor swift\n");
+	delete_song(table, "look what you made me do", "taylor swift");
+	printf("Table after deleting:\n");
+	print_table(table);
+	br();
+
+	printf("TESTING DELETE ALL SONGS\n");
+	delete_all_songs(table);
+	printf("Table after deleting:\n");
+	print_table(table);
+	printf("Adding back hello by adele\n");
+	add_song(table, "hello", "adele");
+	print_table(table);
 }

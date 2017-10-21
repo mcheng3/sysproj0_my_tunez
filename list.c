@@ -116,6 +116,18 @@ void print_letter_list(song_node * ary[], char letter){
 	print_list(ary[letter-97]);
 }
 
+void print_artist_list(song_node * ary[], char * artist){
+	int count = 0;
+	song_node * n = ary[artist[0] - 97];
+	while(n){
+		if(!strcmp(n->artist, artist)){
+			printf("%d: %s by %s\n", count, n->name, n->artist);
+		}
+		n = n->next;
+		count++;
+	}
+}
+
 song_node * search_song(song_node * ary[], char * name, char * artist) {
 	char letter = artist[0];
 	song_node * search = ary[letter-97];
@@ -152,16 +164,24 @@ int main(){
 	head = insert_front(head, "a", "a");
 	printf("TESTING PRINT_LIST\n");
 	print_list(head);
+	
 	br();
+	
 	printf("FINDING SONG BY NAME AND ARTIST\n");	
 	print_list(find_song(head, "m", "b"));
+	
 	br();
+	
 	printf("FINDING SONG BY ARTIST\n");
 	print_list(find_song_artist(head, "b"));
+	
 	br();
+	
 	printf("FINDING RANDOM NODE\n");
 	print_list(rand_node(head));
+	
 	br();
+	
 	printf("REMOVING NODE\n");
 	head = remove_node(head, "a", "a");
 	head = remove_node(head, "b", "b");
@@ -170,23 +190,54 @@ int main(){
 	head = insert_ordered(head, "c", "d");
 	head = insert_ordered(head, "a", "e");
 	print_list(head);
+	
 	br();
+	
 	printf("TESTING TABLE ADD SONG\n");
+	
 	add_song(table, "look what you made me do", "taylor swift");
 	add_song(table, "bad blood", "taylor swift");
 	add_song(table, "closer", "the chainsmokers");
 	add_song(table, "paris", "the chainsmokers");
 	add_song(table, "honest", "the chainsmokers");
 	add_song(table, "hello", "adele");
+	add_song(table, "rolling in the deep", "adele");
+	add_song(table, "rolling in the deep", "adele");
+	add_song(table, "complicated", "avril lavigne");
+	add_song(table, "my happy ending", "avril lavigne");
 	print_table(table);
+	
 	br();
+	
+	printf("TESTING PRINT ARTIST LIST\n");
+	
+	printf("PRINT the chainsmokers list\n");
+	print_artist_list(table, "the chainsmokers");
+	printf("\nPRINT adele list\n");
+	print_artist_list(table, "adele");
+	printf("\nPRINT avril lavigne list\n");
+	print_artist_list(table, "avril lavigne");
+
+	br();
+
 	printf("TESTING SEARCH BY SONG\n");
+	
 	print_list(search_song(table, "hello", "adele"));
+
 	br();
+
 	printf("TESTING SEARCH BY ARTIST\n");
+	
+	printf("PRINT the chainsmokers list\n");
 	print_list(search_artist(table, "the chainsmokers"));
+
 	br();
+	
 	printf("TESTING PRINT LETTER LIST\n");
+	
+	printf("PRINT a list\n");
+	print_letter_list(table, 'a');
+	printf("PRINT t list\n");
 	print_letter_list(table, 't');
 	free_list(head);
 }

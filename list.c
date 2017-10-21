@@ -117,7 +117,7 @@ song_node * remove_node(song_node * n, char * name, char * artist) {
 }
 
 void add_song(song_node * ary[], char * name, char * artist){
-	char letter = name[0];
+	char letter = artist[0];
 	printf("%c aka %d\n", letter, letter);
 	if(!ary[letter-97]){
 		printf("ok\n");
@@ -131,6 +131,7 @@ void add_song(song_node * ary[], char * name, char * artist){
 	print_list(ary[letter-97]);
 	br();
 } 
+
 int main(){
 	song_node * table[27];
 	int i = 0;

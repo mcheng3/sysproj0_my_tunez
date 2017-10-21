@@ -178,7 +178,15 @@ int main(){
 	print_list(head);
 	add_song(table, "abc", "potato");
 	add_song(table, "def", "potato");
+
+	add_song(table, "look what you made me do", "taylor swift");
+	add_song(table, "bad blood", "taylor swift");
+	add_song(table, "closer", "the chainsmokers");
+	add_song(table, "paris", "the chainsmokers");
 	//printf("%d\n", head->next->i);
-	print_list(table[0]);
+	printf("PRINT p list\n");
+	print_letter_list(table, 'p');
+	printf("PRINT t list\n");
+	print_letter_list(table, 't');
 	free_list(head);
 }

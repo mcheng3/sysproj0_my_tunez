@@ -172,7 +172,7 @@ int main(){
 	head = insert_ordered(head, "c", "d");
 	print_list(head);
 	add_song(table, "abc", "potato");
-	add_song(table, "abc", "potato");
+	add_song(table, "def", "potato");
 	//printf("%d\n", head->next->i);
 	print_list(table[0]);
 	free_list(head);

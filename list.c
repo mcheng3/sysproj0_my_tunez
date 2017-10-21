@@ -104,7 +104,7 @@ song_node * free_list(song_node * n){
 
 song_node * remove_node(song_node * n, char * name, char * artist) {
 	song_node * node = find_song(n, name, artist);
-	if(node = n){
+	if(node == n){
 		song_node * hold = n->next;  
 		free(n);
 		return hold;
@@ -126,7 +126,7 @@ void add_song(song_node * ary[], char * name, char * artist){
 		
 	}
 	else{
-		insert_front(ary[letter-97], name, artist);
+		ary[letter-97] = insert_ordered(ary[letter-97], name, artist);
 	}
 	print_list(ary[letter-97]);
 	br();

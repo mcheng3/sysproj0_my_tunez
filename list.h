@@ -17,5 +17,11 @@ void add_song(song_node * ary[], char *, char *);
 song_node * search_song(song_node * ary[], char *, char *);
 song_node * search_artist(song_node * ary[], char *);
 void print_letter_list(song_node * ary[], char);
+void print_artist_list(song_node * ary[], char *);
+song_node * delete_song(song_node * ary[], char *, char *);
+void delete_all_songs(song_node * ary[]);
+  
+  
+  
   
   

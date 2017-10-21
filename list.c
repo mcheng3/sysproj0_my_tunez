@@ -132,6 +132,10 @@ void add_song(song_node * ary[], char * name, char * artist){
 	br();
 } 
 
+void print_letter_list(song_node * ary[], char letter){
+	print_list(ary[letter-97]);
+}
+
 int main(){
 	song_node * table[27];
 	int i = 0;

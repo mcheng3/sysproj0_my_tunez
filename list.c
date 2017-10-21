@@ -27,17 +27,39 @@ song_node * insert_front(song_node * n, char * name, char * artist){
 	return head;
 }
 
+int songcmp(song_node * a, song_node * b){
+	int artist_cmp = strcmp(a->artist, b->artist);
+	if(artist_cmp){
+		return artist_cmp;
+	}
+	else{
+		return strcmp(a->name, b->name);
+	}
+}
+
 song_node * insert_ordered(song_node * n, char * name, char * artist) { 
 	song_node * insert = (song_node *) malloc(sizeof(song_node));
 	strcpy(insert -> name, name);
 	strcpy(insert -> artist, artist);
-
-	while (strcmp(n->next-> name, name) < 0) {
-		n = n -> next;
+	song_node * x = n;
+	printf("Comparing [%s: %s] to [%s: %s]\n %d\n", x->artist, x->name, insert->artist, insert->name, songcmp(x, insert));
+	if(songcmp(x, insert) > 0){
+		insert->next = x;
+		return insert;
 	}
-	insert -> next = n -> next;
-	n -> next = insert;
-	return insert;
+	else{
+		while (x->next){
+			printf("Comparing [%s: %s] to [%s: %s]\n %d\n", x->artist, x->name, insert->artist, insert->name, songcmp(x, insert));
+			if(songcmp(x, insert) > 0){
+				insert->next = x->next;
+				x->next = insert;
+			return n;
+			}
+			x = x->next;
+		}
+		x->next = insert;
+		return n;
+	}
 }
 
 song_node * find_song(song_node * n, char * name, char * artist) {
@@ -80,13 +102,18 @@ song_node * free_list(song_node * n){
 	return n;
 }
 
-int remove_node(song_node * n, char * name, char * artist) {
+song_node * remove_node(song_node * n, char * name, char * artist) {
 	song_node * node = find_song(n, name, artist);
+	if(node = n){
+		song_node * hold = n->next;  
+		free(n);
+		return hold;
+	}
 	while (n->next != node) {
 		n = n -> next;
 	}
 	n -> next = node -> next;
-	return 0;
+	return n;
 }
 
 void add_song(song_node * ary[], char * name, char * artist){
@@ -113,8 +140,8 @@ int main(){
 	song_node *head;
 	song_node *next = 0;
 	head = insert_front(next, "m", "b");
-	head = insert_front(head, "b", "b");
-	head = insert_front(head, "a", "d");
+	head = insert_ordered(head, "b", "b");
+	head = insert_ordered(head, "a", "d");
 	//head = insert_ordered(head, "c", "b");
 	printf("TESTING PRINT_LIST\n");
 	print_list(head);
@@ -129,10 +156,20 @@ int main(){
 	print_list(rand_node(head));
 	br();
 	printf("REMOVING NODE\n");
-	remove_node(head, "b", "b");
-	print_list(head); 
+	head = remove_node(head, "b", "b");
+	print_list(head);
+	song_node  * test0 = (song_node *)malloc(sizeof(song_node)); 
+	song_node * test1 = (song_node *)malloc(sizeof(song_node));
+	strcpy(test0->name, "look what you made me do");
+	strcpy(test0->artist, "taylor swift");
+	strcpy(test1->name, "bad blood");
+	strcpy(test1->artist, "taylor swift");
+	br();
+	printf("TESTING songcmp()\n");
+	printf("Comparing [taylor swift: look what you made me do] to [taylor swift: bad blood]\n %d\n", songcmp(test0, test1)); 
+	br();
 	printf("INSERTING NODE IN ORDER\n");
-	insert_ordered(head, "c", "d");
+	head = insert_ordered(head, "c", "d");
 	print_list(head);
 	add_song(table, "abc", "potato");
 	add_song(table, "abc", "potato");
